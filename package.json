@@ -1,6 +1,11 @@
 {
   "name": "student-info-app",
   "version": "1.0.0",
+  "author": "MIGUELKISE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MIGUELKISE/student-info-app.git"
+  },
   "private": true,
   "type": "module",
   "scripts": {

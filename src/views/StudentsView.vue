@@ -1,103 +1,105 @@
 <template>
   <div class="students-page">
+    <!-- HEADER -->
     <header class="page-header">
-      <div class="header-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="40" height="40">
-          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-        </svg>
-      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
       <h1>Student Directory</h1>
-      <p>Browse and manage all registered student</p>
+      <p>Manage and view enrolled students</p>
     </header>
 
+    <!-- CONTROLS -->
     <div class="controls">
-      <div class="search-box">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Search students..."
-          class="search-input"
-        />
-      </div>
-      <div class="filter-controls">
-        <select v-model="selectedYear" class="filter-select">
-          <option value="">All Years</option>
-          <option value="1">Year 1</option>
-          <option value="2">Year 2</option>
-          <option value="3">Year 3</option>
-          <option value="4">Year 4</option>
-        </select>
-        <button class="refresh-btn" @click="fetchStudents" :disabled="isLoading">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-          </svg>
-          Refresh
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search by name, ID, course, or email..."
+        class="search-input"
+      />
+
+      <select v-model="selectedYear" class="filter-select">
+        <option value="">All Years</option>
+        <option value="1">Year 1</option>
+        <option value="2">Year 2</option>
+        <option value="3">Year 3</option>
+        <option value="4">Year 4</option>
+      </select>
+    </div>
+
+    <!-- STUDENT GRID -->
+    <div class="students-grid">
+      <div
+        v-for="student in filteredStudents"
+        :key="student.id"
+        class="student-card"
+      >
+        <div class="avatar">
+          {{ student.fullName.charAt(0) }}
+        </div>
+
+        <h3>{{ student.fullName }}</h3>
+
+        <div class="student-info">
+          <p><strong>ID:</strong> {{ student.id }}</p>
+          <p><strong>Course:</strong> {{ student.course }}</p>
+          <p><strong>Email:</strong> {{ student.email }}</p>
+        </div>
+
+        <div class="meta">
+          <span>Year {{ student.year }}</span>
+          <span class="status">{{ student.status }}</span>
+        </div>
+
+        <button @click="viewStudent(student)">
+          View Details
         </button>
       </div>
     </div>
 
-    <!-- Loading State -->
-    <div v-if="isLoading" class="loading-state">
-      <div class="loading-spinner"></div>
-      <p>Loading students...</p>
+    <!-- FOOTER -->
+    <div class="stats-footer">
+      Showing {{ filteredStudents.length }} of {{ students.length }} students
     </div>
 
-    <!-- Error State -->
-    <div v-else-if="error" class="error-state">
-      <div class="error-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-        </svg>
+    <!-- MODAL -->
+    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal">
+        <h2>{{ selectedStudent.fullName }}</h2>
+        <p><strong>ID:</strong> {{ selectedStudent.id }}</p>
+        <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+        <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
+        <p><strong>Year:</strong> {{ selectedStudent.year }}</p>
+        <p><strong>Status:</strong> {{ selectedStudent.status }}</p>
+
+        <button class="close-btn" @click="closeModal">Close</button>
       </div>
-      <h3>Oops! Something went wrong</h3>
-      <p>{{ error }}</p>
-      <button class="retry-btn" @click="fetchStudents">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-          <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-        </svg>
-        Try Again
-      </button>
     </div>
 
-    <!-- Empty State -->
-    <div v-else-if="filteredStudents.length === 0" class="empty-state">
-      <div class="empty-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
-      </div>
-      <h3>No students found</h3>
-      <p>Try adjusting your search or filter criteria</p>
-    </div>
-
-    <!-- Student List -->
-    <div v-else class="students-grid">
-      <StudentComponent
-        v-for="student in filteredStudents"
-        :key="student.id"
-        :student="student"
-        :student-name="student.name"
-        :course="student.course"
-        :year="student.year"
-        :student-id="student.id"
-        :email="student.email"
-        :status="student.status"
-        @view-details="handleViewDetails"
-        @edit-student="handleEditStudent"
-      />
-    </div>
-
-    <!-- Stats Footer -->
-    <div v-if="!isLoading && !error && students.length > 0" class="stats-footer">
-      <span>Showing {{ filteredStudents.length }} of {{ students.length }} students</span>
-    </div>
+    <!-- Edit Student Modal -->
+    <EditStudentModal
+      :is-visible="showEditModal"
+      :student="selectedStudent"
+      @close="closeEditModal"
+      @save="handleSaveStudent"
+    />
   </div>
 </template>
 
 <script setup>
+<<<<<<< HEAD
 import { ref, computed } from 'vue'
+=======
+<<<<<<< HEAD
+import { ref, computed, onMounted } from 'vue'
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 import StudentComponent from '../components/StudentComponent.vue'
+import EditStudentModal from '../components/EditStudentModal.vue'
+=======
+import { ref, computed } from 'vue'
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 
+<<<<<<< HEAD
 // Static student data (same list as Home featured students)
 const STUDENT_LIST = [
   { id: '2024001', name: 'Kharl Angelo Dumangas', course: 'Computer Science', year: 3, email: 'kharlangelo.dumangas@school.edu', status: 'Active' },
@@ -116,33 +118,67 @@ const STUDENT_LIST = [
 const students = ref([...STUDENT_LIST])
 const isLoading = ref(false)
 const error = ref(null)
+=======
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 const searchQuery = ref('')
 const selectedYear = ref('')
+
+<<<<<<< HEAD
+// Modal state
+const showEditModal = ref(false)
+const selectedStudent = ref(null)
 
 // Computed property for filtering students
 const filteredStudents = computed(() => {
   let result = students.value
+=======
+// STUDENT DATA
+const students = ref([
+  { id: 'S001', fullName: 'Bernardo Reyes', email: 'bernardo.reyes@gmail.com', course: 'Computer Science', year: 1, status: 'Active' },
+  { id: 'S002', fullName: 'Mitchuie Santos', email: 'mitchuie.santos@gmail.com', course: 'Information Technology', year: 2, status: 'Active' },
+  { id: 'S003', fullName: 'Zoe Garcia', email: 'zoe.garcia@gmail.com', course: 'Software Engineering', year: 3, status: 'Active' },
+  { id: 'S004', fullName: 'Mucho Dela Cruz', email: 'mucho.delacruz@gmail.com', course: 'Data Science', year: 4, status: 'Active' },
+  { id: 'S005', fullName: 'Cleo Navarro', email: 'cleo.navarro@gmail.com', course: 'Cyber Security', year: 2, status: 'Active' },
+  { id: 'S006', fullName: 'Kitkat Mendoza', email: 'kitkat.mendoza@gmail.com', course: 'Web Development', year: 1, status: 'Active' },
+  { id: 'S007', fullName: 'CJ Lopez', email: 'cj.lopez@gmail.com', course: 'Mobile Computing', year: 3, status: 'Active' },
+  { id: 'S008', fullName: 'Kiesha Fernandez', email: 'kiesha.fernandez@gmail.com', course: 'Information Technology', year: 4, status: 'Active' },
+  { id: 'S009', fullName: 'Mikko Ramos', email: 'mikko.ramos@gmail.com', course: 'Computer Science', year: 2, status: 'Active' },
+  { id: 'S010', fullName: 'Athena Villanueva', email: 'athena.villanueva@gmail.com', course: 'Data Science', year: 1, status: 'Active' }
+])
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 
-  // Filter by search query
-  if (searchQuery.value) {
+// FILTERED STUDENTS
+const filteredStudents = computed(() => {
+  return students.value.filter(student => {
     const query = searchQuery.value.toLowerCase()
+<<<<<<< HEAD
     result = result.filter(student =>
       student.name.toLowerCase().includes(query) ||
+=======
+    const matchesSearch =
+      student.fullName.toLowerCase().includes(query) ||
+      student.id.toLowerCase().includes(query) ||
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
       student.course.toLowerCase().includes(query) ||
       student.email.toLowerCase().includes(query)
-    )
-  }
 
+<<<<<<< HEAD
   // Filter by year
   if (selectedYear.value) {
     result = result.filter(student =>
       student.year.toString() === selectedYear.value
     )
   }
+=======
+    const matchesYear =
+      !selectedYear.value || student.year.toString() === selectedYear.value
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 
-  return result
+    return matchesSearch && matchesYear
+  })
 })
 
+<<<<<<< HEAD
 // Refresh just re-loads the static list (no API)
 const fetchStudents = () => {
   isLoading.value = true
@@ -165,49 +201,129 @@ const handleEditStudent = (student) => {
 }
 
 // Data is loaded from static list (no API fetch on mount)
+=======
+// MODAL
+const selectedStudent = ref(null)
+const showModal = ref(false)
+
+const viewStudent = (student) => {
+  selectedStudent.value = student
+  showModal.value = true
+}
+
+const closeModal = () => {
+  showModal.value = false
+}
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 </script>
 
 <style scoped>
 .students-page {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
 }
 
+/* HEADER */
 .page-header {
   text-align: center;
+<<<<<<< HEAD
   margin-bottom: 30px;
   padding: 32px;
   background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
   border-radius: 18px;
   color: white;
   box-shadow: 0 8px 32px var(--mint-shadow);
+=======
+<<<<<<< HEAD
+  margin-bottom: 40px;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  color: #2d3748;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  z-index: -1;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 
 .header-icon {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
+}
+
+.header-icon svg {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
 }
 
 .page-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
 }
 
 .page-header p {
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  color: #718096;
+=======
+  padding: 40px;
+  background: linear-gradient(135deg, #6B8E23, #8FBC8F, #CDE6C3);
+  border-radius: 15px;
+  color: #F5F1E8;
+  margin-bottom: 30px;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
+/* CONTROLS */
 .controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 15px;
   margin-bottom: 30px;
-  gap: 20px;
   flex-wrap: wrap;
 }
 
+<<<<<<< HEAD
 .search-box {
   flex: 1;
   min-width: 250px;
@@ -340,21 +456,150 @@ const handleEditStudent = (student) => {
 
 .empty-state p {
   color: var(--mint-text-muted);
+=======
+.search-input,
+.filter-select {
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: 2px solid #CDE6C3;
+  font-size: 1rem;
+  flex: 1;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 
+/* GRID */
 .students-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.stats-footer {
+/* CARD */
+.student-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #6B8E23;
+  color: #F5F1E8;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-card h3 {
+  color: #4F6F52;
+  margin-bottom: 15px;
   text-align: center;
+<<<<<<< HEAD
   padding: 20px;
   color: var(--mint-text);
   background: var(--mint-pale);
   border-radius: 14px;
   margin-top: 30px;
   border: 1px solid var(--mint-border);
+=======
+}
+
+.student-info p {
+  color: #5F7F63;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* META */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #5F7F63;
+  font-weight: 500;
+}
+
+/* BUTTON */
+button {
+  background: #6B8E23;
+  color: #F5F1E8;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  width: 100%;
+  margin-top: auto;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+.stats-footer {
+  margin-top: 30px;
+  text-align: center;
+  padding: 15px;
+  background: #ECE5D8;
+  border-radius: 10px;
+  color: #4F6F52;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(79, 111, 82, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  color: #4F6F52;
+}
+
+.modal p {
+  margin-bottom: 10px;
+  color: #5F7F63;
+}
+
+.close-btn {
+  margin-top: 20px;
+  background: #6B8E23;
+  color: #F5F1E8;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.close-btn:hover {
+  opacity: 0.9;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 </style>
