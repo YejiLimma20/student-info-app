@@ -1,95 +1,79 @@
 <template>
   <div class="students-page">
+    <!-- HEADER -->
     <header class="page-header">
-      <div class="header-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="40" height="40">
-          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-        </svg>
-      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
       <h1>Student Directory</h1>
-      <p>Browse and manage all registered student</p>
+      <p>Manage and view enrolled students</p>
     </header>
 
+    <!-- CONTROLS -->
     <div class="controls">
-      <div class="search-box">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Search students..."
-          class="search-input"
-        />
-      </div>
-      <div class="filter-controls">
-        <select v-model="selectedYear" class="filter-select">
-          <option value="">All Years</option>
-          <option value="1">Year 1</option>
-          <option value="2">Year 2</option>
-          <option value="3">Year 3</option>
-          <option value="4">Year 4</option>
-        </select>
-        <button class="refresh-btn" @click="fetchStudents" :disabled="isLoading">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-          </svg>
-          Refresh
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search by name, ID, course, or email..."
+        class="search-input"
+      />
+
+      <select v-model="selectedYear" class="filter-select">
+        <option value="">All Years</option>
+        <option value="1">Year 1</option>
+        <option value="2">Year 2</option>
+        <option value="3">Year 3</option>
+        <option value="4">Year 4</option>
+      </select>
+    </div>
+
+    <!-- STUDENT GRID -->
+    <div class="students-grid">
+      <div
+        v-for="student in filteredStudents"
+        :key="student.id"
+        class="student-card"
+      >
+        <div class="avatar">
+          {{ student.fullName.charAt(0) }}
+        </div>
+
+        <h3>{{ student.fullName }}</h3>
+
+        <div class="student-info">
+          <p><strong>ID:</strong> {{ student.id }}</p>
+          <p><strong>Course:</strong> {{ student.course }}</p>
+          <p><strong>Email:</strong> {{ student.email }}</p>
+        </div>
+
+        <div class="meta">
+          <span>Year {{ student.year }}</span>
+          <span class="status">{{ student.status }}</span>
+        </div>
+
+        <button @click="viewStudent(student)">
+          View Details
         </button>
       </div>
     </div>
 
-    <!-- Loading State -->
-    <div v-if="isLoading" class="loading-state">
-      <div class="loading-spinner"></div>
-      <p>Loading students...</p>
+    <!-- FOOTER -->
+    <div class="stats-footer">
+      Showing {{ filteredStudents.length }} of {{ students.length }} students
     </div>
 
-    <!-- Error State -->
-    <div v-else-if="error" class="error-state">
-      <div class="error-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-        </svg>
+    <!-- MODAL -->
+    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal">
+        <h2>{{ selectedStudent.fullName }}</h2>
+        <p><strong>ID:</strong> {{ selectedStudent.id }}</p>
+        <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+        <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
+        <p><strong>Year:</strong> {{ selectedStudent.year }}</p>
+        <p><strong>Status:</strong> {{ selectedStudent.status }}</p>
+
+        <button class="close-btn" @click="closeModal">Close</button>
       </div>
-      <h3>Oops! Something went wrong</h3>
-      <p>{{ error }}</p>
-      <button class="retry-btn" @click="fetchStudents">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-          <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-        </svg>
-        Try Again
-      </button>
-    </div>
-
-    <!-- Empty State -->
-    <div v-else-if="filteredStudents.length === 0" class="empty-state">
-      <div class="empty-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
-      </div>
-      <h3>No students found</h3>
-      <p>Try adjusting your search or filter criteria</p>
-    </div>
-
-    <!-- Student List -->
-    <div v-else class="students-grid">
-      <StudentComponent
-        v-for="student in filteredStudents"
-        :key="student.id"
-        :student="student"
-        :student-name="student.name"
-        :course="student.course"
-        :year="student.year"
-        :student-id="student.id"
-        :email="student.email"
-        :status="student.status"
-        @view-details="handleViewDetails"
-        @edit-student="handleEditStudent"
-      />
-    </div>
-
-    <!-- Stats Footer -->
-    <div v-if="!isLoading && !error && students.length > 0" class="stats-footer">
-      <span>Showing {{ filteredStudents.length }} of {{ students.length }} students</span>
     </div>
 
     <!-- Edit Student Modal -->
@@ -103,17 +87,18 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
 import { ref, computed, onMounted } from 'vue'
 import StudentComponent from '../components/StudentComponent.vue'
 import EditStudentModal from '../components/EditStudentModal.vue'
+=======
+import { ref, computed } from 'vue'
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 
-// State management
-const students = ref([])
-const isLoading = ref(false)
-const error = ref(null)
 const searchQuery = ref('')
 const selectedYear = ref('')
 
+<<<<<<< HEAD
 // Modal state
 const showEditModal = ref(false)
 const selectedStudent = ref(null)
@@ -121,107 +106,65 @@ const selectedStudent = ref(null)
 // Computed property for filtering students
 const filteredStudents = computed(() => {
   let result = students.value
+=======
+// STUDENT DATA
+const students = ref([
+  { id: 'S001', fullName: 'Bernardo Reyes', email: 'bernardo.reyes@gmail.com', course: 'Computer Science', year: 1, status: 'Active' },
+  { id: 'S002', fullName: 'Mitchuie Santos', email: 'mitchuie.santos@gmail.com', course: 'Information Technology', year: 2, status: 'Active' },
+  { id: 'S003', fullName: 'Zoe Garcia', email: 'zoe.garcia@gmail.com', course: 'Software Engineering', year: 3, status: 'Active' },
+  { id: 'S004', fullName: 'Mucho Dela Cruz', email: 'mucho.delacruz@gmail.com', course: 'Data Science', year: 4, status: 'Active' },
+  { id: 'S005', fullName: 'Cleo Navarro', email: 'cleo.navarro@gmail.com', course: 'Cyber Security', year: 2, status: 'Active' },
+  { id: 'S006', fullName: 'Kitkat Mendoza', email: 'kitkat.mendoza@gmail.com', course: 'Web Development', year: 1, status: 'Active' },
+  { id: 'S007', fullName: 'CJ Lopez', email: 'cj.lopez@gmail.com', course: 'Mobile Computing', year: 3, status: 'Active' },
+  { id: 'S008', fullName: 'Kiesha Fernandez', email: 'kiesha.fernandez@gmail.com', course: 'Information Technology', year: 4, status: 'Active' },
+  { id: 'S009', fullName: 'Mikko Ramos', email: 'mikko.ramos@gmail.com', course: 'Computer Science', year: 2, status: 'Active' },
+  { id: 'S010', fullName: 'Athena Villanueva', email: 'athena.villanueva@gmail.com', course: 'Data Science', year: 1, status: 'Active' }
+])
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 
-  // Filter by search query
-  if (searchQuery.value) {
+// FILTERED STUDENTS
+const filteredStudents = computed(() => {
+  return students.value.filter(student => {
     const query = searchQuery.value.toLowerCase()
-    result = result.filter(student => 
-      student.name.toLowerCase().includes(query) ||
+    const matchesSearch =
+      student.fullName.toLowerCase().includes(query) ||
+      student.id.toLowerCase().includes(query) ||
       student.course.toLowerCase().includes(query) ||
       student.email.toLowerCase().includes(query)
-    )
-  }
 
-  // Filter by year
-  if (selectedYear.value) {
-    result = result.filter(student => 
-      student.year.toString() === selectedYear.value
-    )
-  }
+    const matchesYear =
+      !selectedYear.value || student.year.toString() === selectedYear.value
 
-  return result
+    return matchesSearch && matchesYear
+  })
 })
 
-// API Integration using Fetch
-const fetchStudents = async () => {
-  isLoading.value = true
-  error.value = null
+// MODAL
+const selectedStudent = ref(null)
+const showModal = ref(false)
 
-  try {
-    // Using JSONPlaceholder API as public API example
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const data = await response.json()
-
-    // Transform API data to student format
-    students.value = data.map(user => ({
-      id: user.id.toString().padStart(4, '0'),
-      name: user.name,
-      course: getRandomCourse(),
-      year: Math.floor(Math.random() * 4) + 1,
-      email: user.email,
-      status: getRandomStatus(),
-      phone: user.phone,
-      website: user.website,
-      company: user.company.name
-    }))
-
-  } catch (err) {
-    error.value = err.message || 'Failed to fetch students. Please try again.'
-    console.error('Error fetching students:', err)
-  } finally {
-    isLoading.value = false
-  }
+const viewStudent = (student) => {
+  selectedStudent.value = student
+  showModal.value = true
 }
 
-// Helper functions
-const getRandomCourse = () => {
-  const courses = [
-    'Computer Science',
-    'Information Technology',
-    'Software Engineering',
-    'Data Science',
-    'Cyber Security',
-    'Web Development',
-    'Mobile Computing'
-  ]
-  return courses[Math.floor(Math.random() * courses.length)]
+const closeModal = () => {
+  showModal.value = false
 }
-
-const getRandomStatus = () => {
-  const statuses = ['Active', 'Active', 'Active', 'Pending', 'Inactive']
-  return statuses[Math.floor(Math.random() * statuses.length)]
-}
-
-// Event handlers
-const handleViewDetails = (student) => {
-  console.log('View details for:', student)
-  alert(`Viewing details for:\n\nName: ${student.name}\nCourse: ${student.course}\nYear: ${student.year}\nEmail: ${student.email}`)
-}
-
-const handleEditStudent = (student) => {
-  console.log('Edit student:', student)
-  alert(`Opening editor for ${student.name}`)
-}
-
-// Fetch data on component mount
-onMounted(() => {
-  fetchStudents()
-})
 </script>
 
 <style scoped>
 .students-page {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
 }
 
+/* HEADER */
 .page-header {
   text-align: center;
+<<<<<<< HEAD
   margin-bottom: 40px;
   padding: 3rem 2rem;
   background: rgba(255, 255, 255, 0.95);
@@ -290,160 +233,156 @@ onMounted(() => {
 .page-header p {
   font-size: 1.125rem;
   color: #718096;
+=======
+  padding: 40px;
+  background: linear-gradient(135deg, #6B8E23, #8FBC8F, #CDE6C3);
+  border-radius: 15px;
+  color: #F5F1E8;
+  margin-bottom: 30px;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
+/* CONTROLS */
 .controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 15px;
   margin-bottom: 30px;
-  gap: 20px;
   flex-wrap: wrap;
 }
 
-.search-box {
-  flex: 1;
-  min-width: 250px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 12px 20px;
-  border: 2px solid #6594B1;
-  border-radius: 25px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-  background: white;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #213C51;
-  box-shadow: 0 0 0 3px rgba(101, 148, 177, 0.2);
-}
-
-.filter-controls {
-  display: flex;
-  gap: 10px;
-}
-
+.search-input,
 .filter-select {
-  padding: 12px 20px;
-  border: 2px solid #6594B1;
+  padding: 12px 18px;
   border-radius: 25px;
+  border: 2px solid #CDE6C3;
   font-size: 1rem;
-  background: white;
-  cursor: pointer;
+  flex: 1;
 }
 
-.filter-select:focus {
-  outline: none;
-  border-color: #213C51;
-}
-
-.refresh-btn {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
-  color: white;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.refresh-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.loading-state {
-  text-align: center;
-  padding: 60px 20px;
-  background: #EEEEEE;
-  border-radius: 10px;
-}
-
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #d4d4d4;
-  border-top-color: #6594B1;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.error-state {
-  text-align: center;
-  padding: 60px 20px;
-  background: #ffebee;
-  border-radius: 10px;
-  border: 2px solid #ef5350;
-}
-
-.error-icon {
-  margin-bottom: 15px;
-  color: #c62828;
-}
-
-.error-state h3 {
-  color: #c62828;
-  margin-bottom: 10px;
-}
-
-.error-state p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.retry-btn {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-  color: white;
-  padding: 12px 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  background: #e8f5e9;
-  border-radius: 10px;
-}
-
-.empty-icon {
-  margin-bottom: 15px;
-  color: #4caf50;
-}
-
-.empty-state h3 {
-  color: #2e7d32;
-  margin-bottom: 10px;
-}
-
-.empty-state p {
-  color: #666;
-}
-
+/* GRID */
 .students-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.stats-footer {
+/* CARD */
+.student-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #6B8E23;
+  color: #F5F1E8;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-card h3 {
+  color: #4F6F52;
+  margin-bottom: 15px;
   text-align: center;
-  padding: 20px;
-  color: #2e7d32;
-  background: #e8f5e9;
-  border-radius: 10px;
+}
+
+.student-info p {
+  color: #5F7F63;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* META */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #5F7F63;
+  font-weight: 500;
+}
+
+/* BUTTON */
+button {
+  background: #6B8E23;
+  color: #F5F1E8;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  width: 100%;
+  margin-top: auto;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+.stats-footer {
   margin-top: 30px;
+  text-align: center;
+  padding: 15px;
+  background: #ECE5D8;
+  border-radius: 10px;
+  color: #4F6F52;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(79, 111, 82, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  color: #4F6F52;
+}
+
+.modal p {
+  margin-bottom: 10px;
+  color: #5F7F63;
+}
+
+.close-btn {
+  margin-top: 20px;
+  background: #6B8E23;
+  color: #F5F1E8;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.close-btn:hover {
+  opacity: 0.9;
 }
 </style>

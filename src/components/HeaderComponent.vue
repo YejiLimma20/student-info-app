@@ -38,7 +38,7 @@
           <span class="nav-label">About</span>
         </router-link>
         <router-link to="/contact" class="nav-item" active-class="active">
-      
+          <span class="nav-label">Contact</span>
         </router-link>
       </nav>
       <div class="user-actions">
@@ -57,7 +57,6 @@
 // This component provides navigation links to different pages
 </script>
 
-<style scoped>
 .header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -66,6 +65,28 @@
   position: sticky;
   top: 0;
   z-index: 100;
+}
+=======
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+=======
+  background: linear-gradient(
+    135deg,
+    #6B8E23 0%,   /* olive green */
+    #8FBC8F 50%,  /* soft green */
+    #CDE6C3 100%  /* light beige-green */
+  );
+  color: #F5F1E8; /* beige text */
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(107, 142, 35, 0.25);
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
 .header-content {
@@ -80,6 +101,7 @@
 .brand {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   gap: 1rem;
 }
 
@@ -89,6 +111,16 @@
   border-radius: 12px;
   padding: 0.5rem;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+=======
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #F5F1E8;
+}
+
+.logo-icon {
+  color: #F5F1E8;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
 .brand-text h1 {
@@ -109,6 +141,7 @@
   gap: 2rem;
 }
 
+<<<<<<< HEAD
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -171,10 +204,18 @@
 }
 
 .user-actions {
+=======
+.nav-link {
+  color: #F5F1E8;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
   display: flex;
   align-items: center;
 }
 
+<<<<<<< HEAD
 .action-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -193,5 +234,12 @@
 .action-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+=======
+.nav-link:hover,
+.nav-link.router-link-active {
+  background-color: rgba(245, 241, 232, 0.35); /* beige hover */
+  color: #556B2F; /* darker green text */
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
+
 </style>

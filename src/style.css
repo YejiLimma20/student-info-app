@@ -1,9 +1,11 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 html {
   scroll-behavior: smooth;
 }
@@ -12,19 +14,29 @@ body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #2d3748;
+=======
+/* BODY */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #FFFFFF; /* changed to white */
+  color: #4F6F52;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
+/* LINKS */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* BUTTONS */
 button {
   cursor: pointer;
   border: none;
+<<<<<<< HEAD
   border-radius: 12px;
   padding: 12px 24px;
   font-size: 16px;
@@ -36,15 +48,31 @@ button {
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+=======
+  border-radius: 25px;
+  padding: 10px 22px;
+  font-size: 14px;
+  background: #6B8E23;
+  color: #F5F1E8;
+  transition: all 0.3s ease;
 }
 
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
+}
+
+/* LAYOUT */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
 
+/* CARD */
 .card {
+<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -52,18 +80,37 @@ button:hover {
   padding: 30px;
   margin-bottom: 30px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+=======
+  background: #F5F1E8;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid #8FBC8F;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
+/* LOADING */
 .loading {
   text-align: center;
+<<<<<<< HEAD
   padding: 60px;
   color: #4a5568;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   backdrop-filter: blur(10px);
+=======
+  padding: 40px;
+  color: #4F6F52;
+  background: #ECE5D8;
+  border-radius: 12px;
+  border: 1px solid #CDE6C3;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
+/* ERROR */
 .error {
+<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   color: #e53e3e;
@@ -72,9 +119,19 @@ button:hover {
   text-align: center;
   border: 1px solid rgba(229, 62, 62, 0.2);
   box-shadow: 0 8px 32px rgba(229, 62, 62, 0.1);
+=======
+  background: linear-gradient(135deg, #fbeaea 0%, #f3c6c6 100%);
+  color: #7A2E2E;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #d99a9a;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
 
+/* SUCCESS */
 .success {
+<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   color: #38a169;
@@ -83,4 +140,12 @@ button:hover {
   text-align: center;
   border: 1px solid rgba(56, 161, 105, 0.2);
   box-shadow: 0 8px 32px rgba(56, 161, 105, 0.1);
+=======
+  background: linear-gradient(135deg, #e6f4ea 0%, #b7dfc2 100%);
+  color: #2E5E3E;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #8FBC8F;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
 }
