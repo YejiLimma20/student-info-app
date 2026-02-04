@@ -7,7 +7,7 @@
         </svg>
       </div>
       <h1>Student Directory</h1>
-      <p>Browse and manage all registered students</p>
+      <p>Browse and manage all registered student</p>
     </header>
 
     <div class="controls">
