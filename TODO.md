@@ -1,0 +1,1 @@
+- [x] Remove the contact icon from HeaderComponent.vue by deleting the nav-icon div and its SVG content from the contact router-link

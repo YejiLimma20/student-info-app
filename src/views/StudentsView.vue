@@ -91,12 +91,21 @@
     <div v-if="!isLoading && !error && students.length > 0" class="stats-footer">
       <span>Showing {{ filteredStudents.length }} of {{ students.length }} students</span>
     </div>
+
+    <!-- Edit Student Modal -->
+    <EditStudentModal
+      :is-visible="showEditModal"
+      :student="selectedStudent"
+      @close="closeEditModal"
+      @save="handleSaveStudent"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import StudentComponent from '../components/StudentComponent.vue'
+import EditStudentModal from '../components/EditStudentModal.vue'
 
 // State management
 const students = ref([])
@@ -104,6 +113,10 @@ const isLoading = ref(false)
 const error = ref(null)
 const searchQuery = ref('')
 const selectedYear = ref('')
+
+// Modal state
+const showEditModal = ref(false)
+const selectedStudent = ref(null)
 
 // Computed property for filtering students
 const filteredStudents = computed(() => {
@@ -209,27 +222,74 @@ onMounted(() => {
 
 .page-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding: 30px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  border-radius: 15px;
-  color: white;
+  margin-bottom: 40px;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  color: #2d3748;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  z-index: -1;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 .header-icon {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
+}
+
+.header-icon svg {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
 }
 
 .page-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
 }
 
 .page-header p {
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  color: #718096;
 }
 
 .controls {

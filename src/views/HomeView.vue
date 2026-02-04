@@ -84,12 +84,21 @@
         />
       </div>
     </section>
+
+    <!-- Edit Student Modal -->
+    <EditStudentModal
+      :is-visible="showEditModal"
+      :student="selectedStudent"
+      @close="closeEditModal"
+      @save="handleSaveStudent"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import StudentComponent from '../components/StudentComponent.vue'
+import EditStudentModal from '../components/EditStudentModal.vue'
 
 // Featured students data
 const featuredStudents = ref([
@@ -119,6 +128,10 @@ const featuredStudents = ref([
   }
 ])
 
+// Modal state
+const showEditModal = ref(false)
+const selectedStudent = ref(null)
+
 // Event handlers
 const handleViewDetails = (student) => {
   console.log('View details for:', student)
@@ -126,8 +139,22 @@ const handleViewDetails = (student) => {
 }
 
 const handleEditStudent = (student) => {
-  console.log('Edit student:', student)
-  alert(`Editing ${student.name}'s profile`)
+  selectedStudent.value = student
+  showEditModal.value = true
+}
+
+const closeEditModal = () => {
+  showEditModal.value = false
+  selectedStudent.value = null
+}
+
+const handleSaveStudent = (updatedStudent) => {
+  const index = featuredStudents.value.findIndex(student => student.id === updatedStudent.id)
+  if (index !== -1) {
+    featuredStudents.value[index] = updatedStudent
+    console.log('Student updated:', updatedStudent)
+  }
+  closeEditModal()
 }
 </script>
 
