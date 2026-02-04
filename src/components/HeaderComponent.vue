@@ -47,10 +47,15 @@
 
 <style scoped>
 .header {
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    #6B8E23 0%,   /* olive green */
+    #8FBC8F 50%,  /* soft green */
+    #CDE6C3 100%  /* light beige-green */
+  );
+  color: #F5F1E8; /* beige text */
   padding: 0 20px;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.2);
+  box-shadow: 0 2px 10px rgba(107, 142, 35, 0.25);
 }
 
 .header-container {
@@ -68,10 +73,11 @@
   gap: 10px;
   font-weight: bold;
   font-size: 1.2rem;
+  color: #F5F1E8;
 }
 
 .logo-icon {
-  color: white;
+  color: #F5F1E8;
 }
 
 .nav {
@@ -80,7 +86,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: #F5F1E8;
   padding: 8px 16px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
@@ -91,6 +97,8 @@
 
 .nav-link:hover,
 .nav-link.router-link-active {
-  background-color: rgba(221, 174, 211, 0.3);
+  background-color: rgba(245, 241, 232, 0.35); /* beige hover */
+  color: #556B2F; /* darker green text */
 }
+
 </style>

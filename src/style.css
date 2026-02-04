@@ -1,72 +1,85 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
-  color: #213C51;
+  background: #FFFFFF; /* changed to white */
+  color: #4F6F52;
   line-height: 1.6;
   min-height: 100vh;
 }
 
+/* LINKS */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* BUTTONS */
 button {
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 25px;
+  padding: 10px 22px;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  background: #6B8E23;
+  color: #F5F1E8;
+  transition: all 0.3s ease;
 }
 
 button:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
+/* LAYOUT */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
+/* CARD */
 .card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.15);
-  padding: 20px;
+  background: #F5F1E8;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
   margin-bottom: 20px;
-  border: 1px solid #6594B1;
+  border: 1px solid #8FBC8F;
 }
 
+/* LOADING */
 .loading {
   text-align: center;
   padding: 40px;
-  color: #213C51;
-  background: #EEEEEE;
-  border-radius: 10px;
+  color: #4F6F52;
+  background: #ECE5D8;
+  border-radius: 12px;
+  border: 1px solid #CDE6C3;
 }
 
+/* ERROR */
 .error {
-  background: linear-gradient(135deg, #f8d7da 0%, #ef9a9a 100%);
-  color: #213C51;
+  background: linear-gradient(135deg, #fbeaea 0%, #f3c6c6 100%);
+  color: #7A2E2E;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 12px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid #d99a9a;
 }
 
+/* SUCCESS */
 .success {
-  background: linear-gradient(135deg, #d4edda 0%, #a5d6a7 100%);
-  color: #213C51;
+  background: linear-gradient(135deg, #e6f4ea 0%, #b7dfc2 100%);
+  color: #2E5E3E;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 12px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid #8FBC8F;
 }

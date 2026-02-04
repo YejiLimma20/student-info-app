@@ -122,13 +122,14 @@
   margin: 0 auto;
 }
 
+/* ===== HEADER ===== */
 .page-header {
   text-align: center;
   padding: 40px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
+  background: linear-gradient(135deg, #6B8E23 0%, #8FBC8F 50%, #CDE6C3 100%);
   border-radius: 15px;
   margin-bottom: 40px;
-  color: white;
+  color: #F5F1E8;
 }
 
 .page-header svg {
@@ -142,9 +143,10 @@
 
 .page-header p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
+/* ===== CONTENT ===== */
 .about-content {
   display: grid;
   gap: 30px;
@@ -152,29 +154,30 @@
 }
 
 .about-card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
+  background: linear-gradient(135deg, #F5F1E8 0%, #ECE5D8 100%);
   border-radius: 15px;
   padding: 30px;
-  border: 1px solid #6594B1;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.1);
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .about-icon {
-  color: #6594B1;
+  color: #6B8E23;
   margin-bottom: 15px;
 }
 
 .about-card h2 {
-  color: #213C51;
+  color: #4F6F52;
   margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
 .about-card p {
-  color: #6594B1;
+  color: #5F7F63;
   line-height: 1.8;
 }
 
+/* ===== FEATURES ===== */
 .features-list {
   list-style: none;
   padding: 0;
@@ -185,25 +188,26 @@
   align-items: center;
   gap: 12px;
   padding: 10px 0;
-  color: #6594B1;
+  color: #5F7F63;
   font-size: 1rem;
 }
 
 .features-list svg {
-  color: #DDAED3;
+  color: #6B8E23;
   flex-shrink: 0;
 }
 
+/* ===== TECH STACK ===== */
 .tech-stack {
-  background: linear-gradient(135deg, #f5f5f5 0%, #EEEEEE 100%);
+  background: linear-gradient(135deg, #F5F1E8 0%, #ECE5D8 100%);
   border-radius: 15px;
   padding: 40px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid #8FBC8F;
 }
 
 .tech-stack h2 {
-  color: #213C51;
+  color: #4F6F52;
   margin-bottom: 30px;
   font-size: 1.8rem;
 }
@@ -220,10 +224,15 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: #6594B1;
+  color: #5F7F63;
+}
+
+.tech-item svg {
+  color: #6B8E23;
 }
 
 .tech-item span {
   font-weight: 500;
 }
+
 </style>
