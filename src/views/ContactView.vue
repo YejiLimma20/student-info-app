@@ -1,153 +1,103 @@
 <template>
   <div class="contact-page">
+    <!-- HEADER -->
     <header class="page-header">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
         <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
       </svg>
       <h1>Contact Us</h1>
-      <p>Get in touch with our team</p>
+      <p>We’re here to help — reach out anytime</p>
     </header>
 
+    <!-- MAIN CONTENT -->
     <div class="contact-container">
+      <!-- CONTACT INFO -->
       <section class="contact-info">
         <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-          </div>
+          <div class="info-icon">📧</div>
           <div class="info-content">
             <h3>Email</h3>
-            <p>support@studentinfo.edu</p>
+            <p>support@sisplatform.edu</p>
           </div>
         </div>
 
         <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>
-          </div>
+          <div class="info-icon">📞</div>
           <div class="info-content">
             <h3>Phone</h3>
-            <p>+1 (555) 123-4567</p>
+            <p>+1 (800) 456-7890</p>
           </div>
         </div>
 
         <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-          </div>
+          <div class="info-icon">📍</div>
           <div class="info-content">
             <h3>Address</h3>
-            <p>123 Education Lane<br>Tech City, TC 12345</p>
+            <p>
+              Innovation Street, Campus Hub<br />
+              Green Valley, GV 40210
+            </p>
           </div>
         </div>
 
         <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-            </svg>
-          </div>
+          <div class="info-icon">⏰</div>
           <div class="info-content">
             <h3>Business Hours</h3>
-            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+            <p>
+              Monday – Friday: 8:00 AM – 5:00 PM<br />
+              Saturday: 9:00 AM – 1:00 PM
+            </p>
           </div>
         </div>
       </section>
 
+      <!-- CONTACT FORM -->
       <section class="contact-form-section">
-        <h2>Send us a Message</h2>
+        <h2>Send Us a Message</h2>
+
         <form class="contact-form" @submit.prevent="handleSubmit">
           <div class="form-group">
-            <label for="name">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-              </svg>
-              Your Name
-            </label>
-            <input 
-              id="name"
-              v-model="formData.name" 
-              type="text" 
-              placeholder="Enter your name"
-              required
-            />
+            <label>Your Name</label>
+            <input v-model="formData.name" type="text" placeholder="Your full name" required />
           </div>
 
           <div class="form-group">
-            <label for="email">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-              Email Address
-            </label>
-            <input 
-              id="email"
-              v-model="formData.email" 
-              type="email" 
-              placeholder="Enter your email"
-              required
-            />
+            <label>Email Address</label>
+            <input v-model="formData.email" type="email" placeholder="you@example.com" required />
           </div>
 
           <div class="form-group">
-            <label for="subject">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              Subject
-            </label>
-            <input 
-              id="subject"
-              v-model="formData.subject" 
-              type="text" 
-              placeholder="Enter subject"
-              required
-            />
+            <label>Subject</label>
+            <input v-model="formData.subject" type="text" placeholder="What is this about?" required />
           </div>
 
           <div class="form-group">
-            <label for="message">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              Message
-            </label>
-            <textarea 
-              id="message"
-              v-model="formData.message" 
-              placeholder="Write your message here..."
+            <label>Message</label>
+            <textarea
+              v-model="formData.message"
               rows="5"
+              placeholder="Tell us how we can help you..."
               required
             ></textarea>
           </div>
 
-          <button type="submit" class="submit-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-            </svg>
-            Send Message
-          </button>
+          <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </section>
     </div>
 
+    <!-- FAQ -->
     <section class="faq-section">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-list">
         <div class="faq-item" v-for="(faq, index) in faqs" :key="index">
           <div class="faq-question" @click="toggleFaq(index)">
-            <span>{{ faq.question }}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" :class="{ 'rotated': faqOpen === index }">
-              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
-            </svg>
+            {{ faq.question }}
+            <span :class="{ rotated: faqOpen === index }">⌄</span>
           </div>
           <div class="faq-answer" v-show="faqOpen === index">
-            <p>{{ faq.answer }}</p>
+            {{ faq.answer }}
           </div>
         </div>
       </div>
@@ -168,22 +118,10 @@ const formData = ref({
 const faqOpen = ref(null)
 
 const faqs = [
-  {
-    question: 'How do I add a new student to the system?',
-    answer: 'Navigate to the Students page and click the "Add Student" button. Fill in the required information and click "Save" to add the student to the database.'
-  },
-  {
-    question: 'Can I export student data to CSV or PDF?',
-    answer: 'Yes, on the Students page, use the export options available in the controls section. You can choose between CSV or PDF format for your exports.'
-  },
-  {
-    question: 'How do I reset my password?',
-    answer: 'Click on the "Forgot Password" link on the login page. Enter your email address and we will send you a password reset link.'
-  },
-  {
-    question: 'Is my data secure?',
-    answer: 'We implement industry-standard security measures including encryption, regular backups, and secure API connections to protect your data.'
-  }
+  { question: 'How can I contact support?', answer: 'You can reach us through email, phone, or by submitting this contact form.' },
+  { question: 'How fast do you respond?', answer: 'We typically respond within 24 business hours.' },
+  { question: 'Can I request a system demo?', answer: 'Yes, simply send us a message and our team will contact you.' },
+  { question: 'Is technical assistance available?', answer: 'Yes, our technical support team is available during business hours.' }
 ]
 
 const toggleFaq = (index) => {
@@ -191,13 +129,8 @@ const toggleFaq = (index) => {
 }
 
 const handleSubmit = () => {
-  alert(`Thank you, ${formData.value.name}! Your message has been sent. We will get back to you at ${formData.value.email} soon.`)
-  formData.value = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  }
+  alert(`Thank you, ${formData.value.name}! Your message has been sent.`)
+  formData.value = { name: '', email: '', subject: '', message: '' }
 }
 </script>
 
@@ -205,15 +138,18 @@ const handleSubmit = () => {
 .contact-page {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .page-header {
   text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  border-radius: 15px;
+<<<<<<< HEAD
+  padding: 44px;
+  background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
+  border-radius: 18px;
   margin-bottom: 40px;
   color: white;
+  box-shadow: 0 8px 32px var(--mint-shadow);
 }
 
 .page-header svg {
@@ -228,63 +164,94 @@ const handleSubmit = () => {
 .page-header p {
   font-size: 1.1rem;
   opacity: 0.9;
+=======
+  padding: 40px;
+  background: linear-gradient(135deg, #6B8E23, #8FBC8F, #CDE6C3);
+  border-radius: 15px;
+  margin-bottom: 40px;
+  color: #F5F1E8;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 
 .contact-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   gap: 40px;
-  margin-bottom: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
-@media (max-width: 768px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* CONTACT INFO */
 .contact-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .info-card {
-  background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
-  border-radius: 12px;
-  padding: 20px;
+<<<<<<< HEAD
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 14px;
+  padding: 22px;
   display: flex;
   align-items: center;
-  gap: 15px;
-  border: 1px solid #a5d6a7;
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+  gap: 16px;
+  border: 1px solid var(--mint-border);
+  box-shadow: 0 4px 16px var(--mint-shadow);
 }
 
 .info-icon {
-  color: #2e7d32;
+  color: var(--mint-primary);
   flex-shrink: 0;
 }
 
 .info-content h3 {
-  color: #1b5e20;
+  color: var(--mint-text);
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .info-content p {
-  color: #388e3c;
+  color: var(--mint-text-muted);
   font-size: 0.95rem;
+=======
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff; /* White background */
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
+.info-icon {
+  font-size: 28px;
+  color: #6B8E23;
+}
+
+.info-content h3 {
+  margin: 0 0 5px 0;
+  color: #4F6F52;
+}
+
+.info-content p {
+  margin: 0;
+  color: #5F7F63;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+/* CONTACT FORM */
 .contact-form-section {
-  background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
-  border-radius: 15px;
-  padding: 30px;
-  border: 1px solid #a5d6a7;
+<<<<<<< HEAD
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
+  padding: 32px;
+  border: 1px solid var(--mint-border);
 }
 
 .contact-form-section h2 {
-  color: #1b5e20;
+  color: var(--mint-text);
   margin-bottom: 25px;
   font-size: 1.5rem;
 }
@@ -297,27 +264,45 @@ const handleSubmit = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #2e7d32;
+  color: var(--mint-text);
   font-weight: 500;
   margin-bottom: 8px;
+=======
+  flex: 2;
+  background: #ffffff; /* White background */
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-.form-group input,
-.form-group textarea {
+.contact-form-section h2 {
+  color: #4F6F52;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+input,
+textarea {
   width: 100%;
+<<<<<<< HEAD
   padding: 12px 16px;
-  border: 2px solid #a5d6a7;
-  border-radius: 8px;
+  border: 2px solid var(--mint-border);
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: white;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  border-color: var(--mint-primary);
+  box-shadow: 0 0 0 3px var(--mint-shadow);
 }
 
 .form-group textarea {
@@ -326,69 +311,100 @@ const handleSubmit = () => {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
   padding: 14px 28px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
   justify-content: center;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--mint-shadow-hover);
 }
 
 .faq-section {
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  border-radius: 15px;
-  padding: 40px;
-  border: 1px solid #a5d6a7;
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
+  padding: 44px;
+  border: 1px solid var(--mint-border);
+=======
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #CDE6C3;
+  font-size: 1rem;
 }
 
+.submit-btn {
+  background: #6B8E23;
+  color: #F5F1E8;
+  padding: 14px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+/* FAQ */
 .faq-section h2 {
-  color: #1b5e20;
+<<<<<<< HEAD
+  color: var(--mint-text);
   margin-bottom: 25px;
   font-size: 1.5rem;
+=======
+  color: #4F6F52;
+  margin-bottom: 20px;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
   text-align: center;
 }
 
 .faq-list {
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .faq-item {
-  background: white;
-  border-radius: 8px;
-  margin-bottom: 10px;
+<<<<<<< HEAD
+  background: var(--mint-white);
+  border-radius: 12px;
+  margin-bottom: 12px;
   overflow: hidden;
-  border: 1px solid #a5d6a7;
+  border: 1px solid var(--mint-border);
+=======
+  background: #ffffff; /* White background */
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #8FBC8F;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 
 .faq-question {
-  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   cursor: pointer;
-  color: #1b5e20;
+<<<<<<< HEAD
+  color: var(--mint-text);
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .faq-question:hover {
-  background: #f1f8e9;
+  background: var(--mint-bg);
 }
 
 .faq-question svg {
-  color: #4caf50;
-  transition: transform 0.3s ease;
+  color: var(--mint-primary);
+  transition: transform 0.2s ease;
 }
 
 .faq-question svg.rotated {
@@ -397,7 +413,27 @@ const handleSubmit = () => {
 
 .faq-answer {
   padding: 0 20px 16px;
-  color: #6594B1;
+  color: var(--mint-text-muted);
   line-height: 1.6;
+=======
+  font-weight: 600;
+  color: #4F6F52;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  color: #5F7F63;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+  }
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
 }
 </style>

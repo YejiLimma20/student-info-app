@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <header class="header">
     <div class="header-content">
       <div class="brand">
@@ -39,6 +40,88 @@
         </router-link>
         <router-link to="/contact" class="nav-item" active-class="active">
       
+=======
+<<<<<<< HEAD
+  <header class="sidebar-header">
+    <div class="sidebar-inner">
+      <div class="logo">
+        <router-link to="/" class="logo-link">
+          <span class="logo-icon-wrap">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+              <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+            </svg>
+          </span>
+          <span class="logo-text">Student Info</span>
+        </router-link>
+      </div>
+      <nav class="nav">
+        <router-link to="/" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+          <span>Home</span>
+        </router-link>
+        <router-link to="/students" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+          </svg>
+          <span>Students</span>
+        </router-link>
+        <router-link to="/about" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+          </svg>
+          <span>About</span>
+        </router-link>
+        <router-link to="/contact" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>Contact</span>
+=======
+  <header class="header">
+    <div class="header-content">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Academy Hub</h1>
+          <p>Student Management System</p>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <router-link to="/" class="nav-item" active-class="active">
+          <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Dashboard</span>
+        </router-link>
+        <router-link to="/students" class="nav-item" active-class="active">
+          <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Students</span>
+        </router-link>
+        <router-link to="/about" class="nav-item" active-class="active">
+          <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+          </div>
+          <span class="nav-label">About</span>
+        </router-link>
+        <router-link to="/contact" class="nav-item" active-class="active">
+          <span class="nav-label">Contact</span>
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
         </router-link>
       </nav>
       <div class="user-actions">
@@ -53,11 +136,11 @@
 </template>
 
 <script setup>
-// HeaderComponent - Main navigation header
-// This component provides navigation links to different pages
 </script>
 
+<<<<<<< HEAD
 <style scoped>
+<<<<<<< HEAD
 .header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -68,6 +151,71 @@
   z-index: 100;
 }
 
+=======
+.sidebar-header {
+  height: 100%;
+  background: linear-gradient(180deg, var(--mint-dark) 0%, var(--mint-primary) 100%);
+  color: white;
+  box-shadow: 4px 0 24px var(--mint-shadow);
+}
+
+.sidebar-inner {
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-height: 100%;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+}
+
+.logo-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+=======
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+=======
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+=======
+  background: linear-gradient(
+    135deg,
+    #6B8E23 0%,   /* olive green */
+    #8FBC8F 50%,  /* soft green */
+    #CDE6C3 100%  /* light beige-green */
+  );
+  color: #F5F1E8; /* beige text */
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(107, 142, 35, 0.25);
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
+}
+
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 .header-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -80,6 +228,7 @@
 .brand {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   gap: 1rem;
 }
 
@@ -89,6 +238,37 @@
   border-radius: 12px;
   padding: 0.5rem;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+=======
+<<<<<<< HEAD
+  gap: 1rem;
+}
+
+.brand-icon {
+  color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+=======
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #F5F1E8;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+.logo-icon {
+  color: #F5F1E8;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
+}
+
+<<<<<<< HEAD
+.logo-text {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  color: white;
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 }
 
 .brand-text h1 {
@@ -106,9 +286,35 @@
 
 .nav-menu {
   display: flex;
+<<<<<<< HEAD
   gap: 2rem;
 }
 
+=======
+  flex-direction: column;
+  gap: 6px;
+=======
+.brand-text h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.brand-text p {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+<<<<<<< HEAD
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -171,10 +377,44 @@
 }
 
 .user-actions {
+<<<<<<< HEAD
+=======
+=======
+.nav-link {
+<<<<<<< HEAD
+  color: rgba(255, 255, 255, 0.85);
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.nav-link.router-link-active {
+  background: var(--mint-light);
+  color: var(--mint-dark);
+=======
+  color: #F5F1E8;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   display: flex;
   align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 .action-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -193,5 +433,16 @@
 .action-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+<<<<<<< HEAD
+=======
+=======
+.nav-link:hover,
+.nav-link.router-link-active {
+  background-color: rgba(245, 241, 232, 0.35); /* beige hover */
+  color: #556B2F; /* darker green text */
+>>>>>>> fc77fd55412f11c84ae2adc62ce4f65a5ccd1541
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 }
+
 </style>

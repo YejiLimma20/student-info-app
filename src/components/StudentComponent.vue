@@ -117,6 +117,7 @@ defineEmits(['view-details', 'edit-student'])
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 .student-tile {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -124,6 +125,41 @@ defineEmits(['view-details', 'edit-student'])
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+=======
+<<<<<<< HEAD
+.student-card {
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px var(--mint-shadow);
+  overflow: hidden;
+  transition: all 0.25s ease;
+  border: 1px solid var(--mint-border);
+}
+
+.student-card:hover {
+  box-shadow: 0 8px 28px var(--mint-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.student-card.expanded {
+  box-shadow: 0 8px 32px var(--mint-shadow-hover);
+}
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+=======
+.student-tile {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
@@ -163,18 +199,43 @@ defineEmits(['view-details', 'edit-student'])
 }
 
 .student-name {
+<<<<<<< HEAD
   font-size: 1.25rem;
+=======
+<<<<<<< HEAD
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--mint-text);
+}
+
+.student-course {
+  color: var(--mint-text-muted);
+=======
+  font-size: 1.25rem;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   font-weight: 600;
   color: #2d3748;
   margin: 0 0 0.5rem 0;
 }
 
+<<<<<<< HEAD
 .meta-info {
+=======
+<<<<<<< HEAD
+.student-year {
+  color: var(--mint-text);
+  font-size: 0.9rem;
+=======
+.meta-info {
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
+<<<<<<< HEAD
 .course-badge {
   background: rgba(102, 126, 234, 0.1);
   color: #667eea;
@@ -236,6 +297,141 @@ defineEmits(['view-details', 'edit-student'])
 
 .tile-actions {
   display: flex;
+=======
+<<<<<<< HEAD
+.toggle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+=======
+.course-badge {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.year-info {
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.tile-details {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(248, 250, 252, 0.5);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+}
+
+.detail-icon {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+<<<<<<< HEAD
+.student-details {
+  padding: 20px;
+  border-top: 2px solid var(--mint-border);
+  background: linear-gradient(145deg, var(--mint-bg) 0%, var(--mint-pale) 100%);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--mint-border);
+}
+
+.detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mint-text-muted);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--mint-text);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: var(--mint-pale);
+  color: var(--mint-text);
+  border: 1px solid var(--mint-mid);
+}
+
+.status-badge.inactive {
+  background: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ef9a9a;
+}
+
+.status-badge.pending {
+  background: var(--mint-bg);
+  color: var(--mint-text-muted);
+  border: 1px solid var(--mint-border);
+}
+
+.actions {
+=======
+.detail-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 0.875rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.tile-actions {
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+  display: flex;
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   gap: 0.75rem;
 }
 
@@ -254,16 +450,38 @@ defineEmits(['view-details', 'edit-student'])
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .action-btn.primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+<<<<<<< HEAD
+.view-btn {
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
+=======
+.action-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
   color: white;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+.edit-btn {
+  background: linear-gradient(135deg, var(--mint-mid) 0%, var(--mint-primary) 100%);
+  color: white;
+=======
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 .action-btn.secondary {
   background: rgba(113, 128, 150, 0.1);
   color: #4a5568;
   border: 1px solid rgba(113, 128, 150, 0.2);
+<<<<<<< HEAD
+=======
+>>>>>>> d992d96f276e221b0723eb068958f1f4b983d1f4
+>>>>>>> d3e1d1395714ed52494885ed674062b9ff2996b1
 }
 
 .action-btn:hover {
