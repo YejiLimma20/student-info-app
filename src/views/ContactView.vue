@@ -209,11 +209,12 @@ const handleSubmit = () => {
 
 .page-header {
   text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  border-radius: 15px;
+  padding: 44px;
+  background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
+  border-radius: 18px;
   margin-bottom: 40px;
   color: white;
+  box-shadow: 0 8px 32px var(--mint-shadow);
 }
 
 .page-header svg {
@@ -250,41 +251,41 @@ const handleSubmit = () => {
 }
 
 .info-card {
-  background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
-  border-radius: 12px;
-  padding: 20px;
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 14px;
+  padding: 22px;
   display: flex;
   align-items: center;
-  gap: 15px;
-  border: 1px solid #a5d6a7;
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+  gap: 16px;
+  border: 1px solid var(--mint-border);
+  box-shadow: 0 4px 16px var(--mint-shadow);
 }
 
 .info-icon {
-  color: #2e7d32;
+  color: var(--mint-primary);
   flex-shrink: 0;
 }
 
 .info-content h3 {
-  color: #1b5e20;
+  color: var(--mint-text);
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .info-content p {
-  color: #388e3c;
+  color: var(--mint-text-muted);
   font-size: 0.95rem;
 }
 
 .contact-form-section {
-  background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
-  border-radius: 15px;
-  padding: 30px;
-  border: 1px solid #a5d6a7;
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
+  padding: 32px;
+  border: 1px solid var(--mint-border);
 }
 
 .contact-form-section h2 {
-  color: #1b5e20;
+  color: var(--mint-text);
   margin-bottom: 25px;
   font-size: 1.5rem;
 }
@@ -297,7 +298,7 @@ const handleSubmit = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #2e7d32;
+  color: var(--mint-text);
   font-weight: 500;
   margin-bottom: 8px;
 }
@@ -306,18 +307,18 @@ const handleSubmit = () => {
 .form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #a5d6a7;
-  border-radius: 8px;
+  border: 2px solid var(--mint-border);
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: white;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  border-color: var(--mint-primary);
+  box-shadow: 0 0 0 3px var(--mint-shadow);
 }
 
 .form-group textarea {
@@ -326,33 +327,34 @@ const handleSubmit = () => {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
   padding: 14px 28px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
   justify-content: center;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--mint-shadow-hover);
 }
 
 .faq-section {
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  border-radius: 15px;
-  padding: 40px;
-  border: 1px solid #a5d6a7;
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
+  padding: 44px;
+  border: 1px solid var(--mint-border);
 }
 
 .faq-section h2 {
-  color: #1b5e20;
+  color: var(--mint-text);
   margin-bottom: 25px;
   font-size: 1.5rem;
   text-align: center;
@@ -364,11 +366,11 @@ const handleSubmit = () => {
 }
 
 .faq-item {
-  background: white;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  background: var(--mint-white);
+  border-radius: 12px;
+  margin-bottom: 12px;
   overflow: hidden;
-  border: 1px solid #a5d6a7;
+  border: 1px solid var(--mint-border);
 }
 
 .faq-question {
@@ -377,18 +379,18 @@ const handleSubmit = () => {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  color: #1b5e20;
+  color: var(--mint-text);
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .faq-question:hover {
-  background: #f1f8e9;
+  background: var(--mint-bg);
 }
 
 .faq-question svg {
-  color: #4caf50;
-  transition: transform 0.3s ease;
+  color: var(--mint-primary);
+  transition: transform 0.2s ease;
 }
 
 .faq-question svg.rotated {
@@ -397,7 +399,7 @@ const handleSubmit = () => {
 
 .faq-answer {
   padding: 0 20px 16px;
-  color: #6594B1;
+  color: var(--mint-text-muted);
   line-height: 1.6;
 }
 </style>

@@ -124,11 +124,12 @@
 
 .page-header {
   text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  border-radius: 15px;
+  padding: 44px;
+  background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
+  border-radius: 18px;
   margin-bottom: 40px;
   color: white;
+  box-shadow: 0 8px 32px var(--mint-shadow);
 }
 
 .page-header svg {
@@ -152,26 +153,26 @@
 }
 
 .about-card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
-  border-radius: 15px;
-  padding: 30px;
-  border: 1px solid #6594B1;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.1);
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid var(--mint-border);
+  box-shadow: 0 4px 20px var(--mint-shadow);
 }
 
 .about-icon {
-  color: #6594B1;
-  margin-bottom: 15px;
+  color: var(--mint-primary);
+  margin-bottom: 16px;
 }
 
 .about-card h2 {
-  color: #213C51;
-  margin-bottom: 15px;
+  color: var(--mint-text);
+  margin-bottom: 16px;
   font-size: 1.5rem;
 }
 
 .about-card p {
-  color: #6594B1;
+  color: var(--mint-text-muted);
   line-height: 1.8;
 }
 
@@ -185,25 +186,25 @@
   align-items: center;
   gap: 12px;
   padding: 10px 0;
-  color: #6594B1;
+  color: var(--mint-text-muted);
   font-size: 1rem;
 }
 
 .features-list svg {
-  color: #DDAED3;
+  color: var(--mint-mid);
   flex-shrink: 0;
 }
 
 .tech-stack {
-  background: linear-gradient(135deg, #f5f5f5 0%, #EEEEEE 100%);
-  border-radius: 15px;
-  padding: 40px;
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
+  padding: 44px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid var(--mint-border);
 }
 
 .tech-stack h2 {
-  color: #213C51;
+  color: var(--mint-text);
   margin-bottom: 30px;
   font-size: 1.8rem;
 }
@@ -220,7 +221,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: #6594B1;
+  color: var(--mint-text-muted);
 }
 
 .tech-item span {

@@ -123,21 +123,21 @@ defineEmits(['view-details', 'edit-student'])
 
 <style scoped>
 .student-card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(33, 60, 81, 0.15);
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px var(--mint-shadow);
   overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid #6594B1;
+  transition: all 0.25s ease;
+  border: 1px solid var(--mint-border);
 }
 
 .student-card:hover {
-  box-shadow: 0 4px 15px rgba(33, 60, 81, 0.25);
+  box-shadow: 0 8px 28px var(--mint-shadow-hover);
   transform: translateY(-2px);
 }
 
 .student-card.expanded {
-  box-shadow: 0 4px 20px rgba(33, 60, 81, 0.3);
+  box-shadow: 0 8px 32px var(--mint-shadow-hover);
 }
 
 .student-header {
@@ -155,17 +155,17 @@ defineEmits(['view-details', 'edit-student'])
 .student-name {
   font-size: 1.2rem;
   margin-bottom: 5px;
-  color: #213C51;
+  color: var(--mint-text);
 }
 
 .student-course {
-  color: #6594B1;
+  color: var(--mint-text-muted);
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .student-year {
-  color: #213C51;
+  color: var(--mint-text);
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -173,15 +173,15 @@ defineEmits(['view-details', 'edit-student'])
 }
 
 .toggle-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 .student-card.expanded .toggle-btn {
@@ -190,8 +190,8 @@ defineEmits(['view-details', 'edit-student'])
 
 .student-details {
   padding: 20px;
-  border-top: 2px solid #6594B1;
-  background: linear-gradient(135deg, #f5f5f5 0%, #EEEEEE 100%);
+  border-top: 2px solid var(--mint-border);
+  background: linear-gradient(145deg, var(--mint-bg) 0%, var(--mint-pale) 100%);
 }
 
 .detail-row {
@@ -199,7 +199,7 @@ defineEmits(['view-details', 'edit-student'])
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: 1px solid var(--mint-border);
 }
 
 .detail-row:last-of-type {
@@ -210,12 +210,12 @@ defineEmits(['view-details', 'edit-student'])
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #6594B1;
+  color: var(--mint-text-muted);
   font-weight: 500;
 }
 
 .detail-value {
-  color: #213C51;
+  color: var(--mint-text);
 }
 
 .status-badge {
@@ -226,21 +226,21 @@ defineEmits(['view-details', 'edit-student'])
 }
 
 .status-badge.active {
-  background: #EEEEEE;
-  color: #213C51;
-  border: 1px solid #6594B1;
+  background: var(--mint-pale);
+  color: var(--mint-text);
+  border: 1px solid var(--mint-mid);
 }
 
 .status-badge.inactive {
-  background: #DDAED3;
-  color: #213C51;
-  border: 1px solid #c99dbf;
+  background: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ef9a9a;
 }
 
 .status-badge.pending {
-  background: #EEEEEE;
-  color: #6594B1;
-  border: 1px solid #6594B1;
+  background: var(--mint-bg);
+  color: var(--mint-text-muted);
+  border: 1px solid var(--mint-border);
 }
 
 .actions {
@@ -262,12 +262,12 @@ defineEmits(['view-details', 'edit-student'])
 }
 
 .view-btn {
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
 }
 
 .edit-btn {
-  background: linear-gradient(135deg, #87b5c9 0%, #6594B1 100%);
+  background: linear-gradient(135deg, var(--mint-mid) 0%, var(--mint-primary) 100%);
   color: white;
 }
 

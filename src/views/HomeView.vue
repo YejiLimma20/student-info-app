@@ -93,30 +93,16 @@ import StudentComponent from '../components/StudentComponent.vue'
 
 // Featured students data
 const featuredStudents = ref([
-  {
-    id: '2024001',
-    name: 'John Smith',
-    course: 'Computer Science',
-    year: 3,
-    email: 'john.smith@school.edu',
-    status: 'Active'
-  },
-  {
-    id: '2024002',
-    name: 'Emily Johnson',
-    course: 'Information Technology',
-    year: 2,
-    email: 'emily.j@school.edu',
-    status: 'Active'
-  },
-  {
-    id: '2024003',
-    name: 'Michael Brown',
-    course: 'Software Engineering',
-    year: 4,
-    email: 'michael.b@school.edu',
-    status: 'Active'
-  }
+  { id: '2024001', name: 'Kharl Angelo Dumangas', course: 'Computer Science', year: 3, email: 'kharlangelo.dumangas@school.edu', status: 'Active' },
+  { id: '2024002', name: 'Mark Anthony Dela Rosa', course: 'Information Technology', year: 2, email: 'markanthony.delarosa@school.edu', status: 'Active' },
+  { id: '2024003', name: 'Andrei Asnan', course: 'Software Engineering', year: 4, email: 'andrei.asnan@school.edu', status: 'Active' },
+  { id: '2024004', name: 'Jan Rhen Garcia', course: 'Data Science', year: 2, email: 'janrhen.garcia@school.edu', status: 'Active' },
+  { id: '2024005', name: 'Juan Miguel Larios', course: 'Web Development', year: 1, email: 'juanmiguel.larios@school.edu', status: 'Active' },
+  { id: '2024006', name: 'Jayvee Biñas', course: 'Cyber Security', year: 3, email: 'jayvee.binas@school.edu', status: 'Active' },
+  { id: '2024007', name: 'Gio McGrey Calugas', course: 'Mobile Computing', year: 4, email: 'giomcgrey.calugas@school.edu', status: 'Active' },
+  { id: '2024008', name: 'Kerwin James Macasunod', course: 'Computer Science', year: 2, email: 'kerwinjames.macasunod@school.edu', status: 'Active' },
+  { id: '2024009', name: 'Kirk Franklin Macasunod', course: 'Information Technology', year: 1, email: 'kirkfranklin.macasunod@school.edu', status: 'Active' },
+  { id: '2024010', name: 'Mandy Factolerin', course: 'Software Engineering', year: 3, email: 'mandy.factolerin@school.edu', status: 'Active' }
 ])
 
 // Event handlers
@@ -139,11 +125,12 @@ const handleEditStudent = (student) => {
 
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
+  padding: 56px 24px;
+  background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
   color: white;
-  border-radius: 15px;
+  border-radius: 18px;
   margin-bottom: 40px;
+  box-shadow: 0 8px 32px var(--mint-shadow);
 }
 
 .hero-icon {
@@ -169,67 +156,69 @@ const handleEditStudent = (student) => {
 }
 
 .feature-card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
-  border-radius: 10px;
-  padding: 30px;
+  background: linear-gradient(145deg, var(--mint-white) 0%, var(--mint-bg) 100%);
+  border-radius: 14px;
+  padding: 28px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.15);
-  transition: transform 0.3s ease;
-  border: 1px solid #6594B1;
+  box-shadow: 0 4px 20px var(--mint-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--mint-border);
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px var(--mint-shadow-hover);
 }
 
 .feature-icon {
-  margin-bottom: 15px;
-  color: #6594B1;
+  margin-bottom: 16px;
+  color: var(--mint-primary);
 }
 
 .feature-card h3 {
-  color: #213C51;
+  color: var(--mint-text);
   margin-bottom: 10px;
 }
 
 .feature-card p {
-  color: #6594B1;
+  color: var(--mint-text-muted);
 }
 
 .cta-section {
   text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #f5f5f5 0%, #EEEEEE 100%);
-  border-radius: 15px;
+  padding: 44px;
+  background: linear-gradient(145deg, var(--mint-pale) 0%, var(--mint-bg) 100%);
+  border-radius: 18px;
   margin-bottom: 40px;
-  border: 1px solid #6594B1;
+  border: 1px solid var(--mint-border);
 }
 
 .cta-section h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #213C51;
+  color: var(--mint-text);
 }
 
 .cta-section p {
-  color: #6594B1;
-  margin-bottom: 20px;
+  color: var(--mint-text-muted);
+  margin-bottom: 24px;
 }
 
 .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
-  padding: 15px 30px;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cta-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px var(--mint-shadow-hover);
 }
 
 .demo-section {
@@ -240,12 +229,12 @@ const handleEditStudent = (student) => {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #213C51;
+  color: var(--mint-text);
 }
 
 .section-subtitle {
   text-align: center;
-  color: #6594B1;
+  color: var(--mint-text-muted);
   margin-bottom: 30px;
 }
 

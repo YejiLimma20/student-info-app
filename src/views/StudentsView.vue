@@ -95,11 +95,25 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import StudentComponent from '../components/StudentComponent.vue'
 
+// Static student data (same list as Home featured students)
+const STUDENT_LIST = [
+  { id: '2024001', name: 'Kharl Angelo Dumangas', course: 'Computer Science', year: 3, email: 'kharlangelo.dumangas@school.edu', status: 'Active' },
+  { id: '2024002', name: 'Mark Anthony Dela Rosa', course: 'Information Technology', year: 2, email: 'markanthony.delarosa@school.edu', status: 'Active' },
+  { id: '2024003', name: 'Andrei Asnan', course: 'Software Engineering', year: 4, email: 'andrei.asnan@school.edu', status: 'Active' },
+  { id: '2024004', name: 'Jan Rhen Garcia', course: 'Data Science', year: 2, email: 'janrhen.garcia@school.edu', status: 'Active' },
+  { id: '2024005', name: 'Juan Miguel Larios', course: 'Web Development', year: 1, email: 'juanmiguel.larios@school.edu', status: 'Active' },
+  { id: '2024006', name: 'Jayvee Biñas', course: 'Cyber Security', year: 3, email: 'jayvee.binas@school.edu', status: 'Active' },
+  { id: '2024007', name: 'Gio McGrey Calugas', course: 'Mobile Computing', year: 4, email: 'giomcgrey.calugas@school.edu', status: 'Active' },
+  { id: '2024008', name: 'Kerwin James Macasunod', course: 'Computer Science', year: 2, email: 'kerwinjames.macasunod@school.edu', status: 'Active' },
+  { id: '2024009', name: 'Kirk Franklin Macasunod', course: 'Information Technology', year: 1, email: 'kirkfranklin.macasunod@school.edu', status: 'Active' },
+  { id: '2024010', name: 'Mandy Factolerin', course: 'Software Engineering', year: 3, email: 'mandy.factolerin@school.edu', status: 'Active' }
+]
+
 // State management
-const students = ref([])
+const students = ref([...STUDENT_LIST])
 const isLoading = ref(false)
 const error = ref(null)
 const searchQuery = ref('')
@@ -112,7 +126,7 @@ const filteredStudents = computed(() => {
   // Filter by search query
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    result = result.filter(student => 
+    result = result.filter(student =>
       student.name.toLowerCase().includes(query) ||
       student.course.toLowerCase().includes(query) ||
       student.email.toLowerCase().includes(query)
@@ -121,7 +135,7 @@ const filteredStudents = computed(() => {
 
   // Filter by year
   if (selectedYear.value) {
-    result = result.filter(student => 
+    result = result.filter(student =>
       student.year.toString() === selectedYear.value
     )
   }
@@ -129,59 +143,14 @@ const filteredStudents = computed(() => {
   return result
 })
 
-// API Integration using Fetch
-const fetchStudents = async () => {
+// Refresh just re-loads the static list (no API)
+const fetchStudents = () => {
   isLoading.value = true
   error.value = null
-
-  try {
-    // Using JSONPlaceholder API as public API example
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const data = await response.json()
-
-    // Transform API data to student format
-    students.value = data.map(user => ({
-      id: user.id.toString().padStart(4, '0'),
-      name: user.name,
-      course: getRandomCourse(),
-      year: Math.floor(Math.random() * 4) + 1,
-      email: user.email,
-      status: getRandomStatus(),
-      phone: user.phone,
-      website: user.website,
-      company: user.company.name
-    }))
-
-  } catch (err) {
-    error.value = err.message || 'Failed to fetch students. Please try again.'
-    console.error('Error fetching students:', err)
-  } finally {
+  setTimeout(() => {
+    students.value = [...STUDENT_LIST]
     isLoading.value = false
-  }
-}
-
-// Helper functions
-const getRandomCourse = () => {
-  const courses = [
-    'Computer Science',
-    'Information Technology',
-    'Software Engineering',
-    'Data Science',
-    'Cyber Security',
-    'Web Development',
-    'Mobile Computing'
-  ]
-  return courses[Math.floor(Math.random() * courses.length)]
-}
-
-const getRandomStatus = () => {
-  const statuses = ['Active', 'Active', 'Active', 'Pending', 'Inactive']
-  return statuses[Math.floor(Math.random() * statuses.length)]
+  }, 300)
 }
 
 // Event handlers
@@ -195,10 +164,7 @@ const handleEditStudent = (student) => {
   alert(`Opening editor for ${student.name}`)
 }
 
-// Fetch data on component mount
-onMounted(() => {
-  fetchStudents()
-})
+// Data is loaded from static list (no API fetch on mount)
 </script>
 
 <style scoped>
@@ -210,10 +176,11 @@ onMounted(() => {
 .page-header {
   text-align: center;
   margin-bottom: 30px;
-  padding: 30px;
-  background: linear-gradient(135deg, #213C51 0%, #6594B1 50%, #87b5c9 100%);
-  border-radius: 15px;
+  padding: 32px;
+  background: linear-gradient(145deg, var(--mint-dark) 0%, var(--mint-primary) 60%, var(--mint-mid) 100%);
+  border-radius: 18px;
   color: white;
+  box-shadow: 0 8px 32px var(--mint-shadow);
 }
 
 .header-icon {
@@ -249,17 +216,17 @@ onMounted(() => {
 .search-input {
   width: 100%;
   padding: 12px 20px;
-  border: 2px solid #6594B1;
-  border-radius: 25px;
+  border: 2px solid var(--mint-border);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: white;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #213C51;
-  box-shadow: 0 0 0 3px rgba(101, 148, 177, 0.2);
+  border-color: var(--mint-primary);
+  box-shadow: 0 0 0 3px var(--mint-shadow);
 }
 
 .filter-controls {
@@ -269,8 +236,8 @@ onMounted(() => {
 
 .filter-select {
   padding: 12px 20px;
-  border: 2px solid #6594B1;
-  border-radius: 25px;
+  border: 2px solid var(--mint-border);
+  border-radius: 12px;
   font-size: 1rem;
   background: white;
   cursor: pointer;
@@ -278,14 +245,14 @@ onMounted(() => {
 
 .filter-select:focus {
   outline: none;
-  border-color: #213C51;
+  border-color: var(--mint-primary);
 }
 
 .refresh-btn {
   padding: 12px 20px;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
-  border-radius: 25px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -299,15 +266,16 @@ onMounted(() => {
 .loading-state {
   text-align: center;
   padding: 60px 20px;
-  background: #EEEEEE;
-  border-radius: 10px;
+  background: var(--mint-white);
+  border-radius: 14px;
+  border: 1px solid var(--mint-border);
 }
 
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid #d4d4d4;
-  border-top-color: #6594B1;
+  border: 4px solid var(--mint-pale);
+  border-top-color: var(--mint-primary);
   border-radius: 50%;
   margin: 0 auto 20px;
   animation: spin 1s linear infinite;
@@ -343,33 +311,35 @@ onMounted(() => {
 }
 
 .retry-btn {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-dark) 100%);
   color: white;
   padding: 12px 30px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  border-radius: 12px;
 }
 
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  background: #e8f5e9;
-  border-radius: 10px;
+  background: var(--mint-bg);
+  border-radius: 14px;
+  border: 1px solid var(--mint-border);
 }
 
 .empty-icon {
   margin-bottom: 15px;
-  color: #4caf50;
+  color: var(--mint-primary);
 }
 
 .empty-state h3 {
-  color: #2e7d32;
+  color: var(--mint-text);
   margin-bottom: 10px;
 }
 
 .empty-state p {
-  color: #666;
+  color: var(--mint-text-muted);
 }
 
 .students-grid {
@@ -381,9 +351,10 @@ onMounted(() => {
 .stats-footer {
   text-align: center;
   padding: 20px;
-  color: #2e7d32;
-  background: #e8f5e9;
-  border-radius: 10px;
+  color: var(--mint-text);
+  background: var(--mint-pale);
+  border-radius: 14px;
   margin-top: 30px;
+  border: 1px solid var(--mint-border);
 }
 </style>
