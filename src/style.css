@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
+  color: #213C51;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.15);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #6594B1;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #213C51;
+  background: #EEEEEE;
+  border-radius: 10px;
+}
+
+.error {
+  background: linear-gradient(135deg, #f8d7da 0%, #ef9a9a 100%);
+  color: #213C51;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #6594B1;
+}
+
+.success {
+  background: linear-gradient(135deg, #d4edda 0%, #a5d6a7 100%);
+  color: #213C51;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #6594B1;
+}
