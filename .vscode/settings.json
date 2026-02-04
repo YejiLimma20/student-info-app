@@ -11,5 +11,6 @@
         "**/.symlinks": true,
         "**/.plugin_symlinks": true,
         ".mule": true
-    }
+    },
+    "DockerRun.DisableDockerrc": true
 }

@@ -4,12 +4,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #6594B1 0%, #213C51 100%);
-  color: #213C51;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #2d3748;
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -20,53 +25,62 @@ a {
 button {
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .card {
-  background: linear-gradient(135deg, #EEEEEE 0%, #d4d4d4 100%);
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(33, 60, 81, 0.15);
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #6594B1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .loading {
   text-align: center;
-  padding: 40px;
-  color: #213C51;
-  background: #EEEEEE;
-  border-radius: 10px;
+  padding: 60px;
+  color: #4a5568;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
 }
 
 .error {
-  background: linear-gradient(135deg, #f8d7da 0%, #ef9a9a 100%);
-  color: #213C51;
-  padding: 20px;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  color: #e53e3e;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  box-shadow: 0 8px 32px rgba(229, 62, 62, 0.1);
 }
 
 .success {
-  background: linear-gradient(135deg, #d4edda 0%, #a5d6a7 100%);
-  color: #213C51;
-  padding: 20px;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  color: #38a169;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  border: 1px solid #6594B1;
+  border: 1px solid rgba(56, 161, 105, 0.2);
+  box-shadow: 0 8px 32px rgba(56, 161, 105, 0.1);
 }
